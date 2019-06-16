@@ -1,3 +1,1 @@
-## Supported grammar
 
-    <digit> ::= 
