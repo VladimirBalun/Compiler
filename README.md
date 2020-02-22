@@ -1,6 +1,6 @@
 # Implementation of the primitive compiler
 
-## Language BNF grammar
+##  🔴 Language BNF grammar
 
     program           -> declaration_lists | expression_lists
     declaration_lists -> declaration_lists var_declaration | var_declaration
@@ -27,17 +27,38 @@
     letter      -> a | ... | z | A | ... | Z
     digit       -> 0 | ... | 9
 
-## Example of the program with current grammar
+##  🔴 Example of the program with current grammar
 
-    int value_1;
-    int value_2;
-    int result_1;
-    int result_2;
+    int value1;
+    int value2;
+    int result1;
+    int result2;
     
-    value_1 = 5;
-    value_2 = 15;
-    result_1 = 0;
-    result_2 = 0;
+    value1 = 5;
+    value2 = 15;
+    result1 = 0;
+    result2 = 0;
     
-    result_1 = value_1 * value_2 - value_2 / value_1;
-    result_2 = value_1 + value_1 * value_2 + value_2;
+    result1 = value1 * value2 - value2 / value1;
+    result2 = value1 + value1 * value2 + value2;
+
+## 🔴 How to build compiler
+
+Current project uses CMake system for building application. You can build compiler by your platform, using the following commands:
+
+    mkdir Build
+    cd Build
+    cmake ..
+
+## 🔴 How to use compiler
+
+List of arguments for compilation:
+
+    Program usage:
+      -h [ --help ]         Show help message.
+      -i [ --input ] arg    Input source file.
+      -o [ --output ] arg   Output executable file.
+
+Example of usage compiler:
+
+    ./Compiler -i SourceFile.as -o ExecutableFile      
