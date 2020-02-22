@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,16 +14,16 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "ParsingAlgorithms.hpp"
 
-#include <string>
+template<>
+void Algorithms::parse<Algorithms::RecursiveDescent>(std::string_view data)
+{
+    
+}
 
-namespace Frontend { namespace Lexing { namespace Keywords {
-
-    inline const std::string SHORT = "short";
-    inline const std::string INT = "int";
-    inline const std::string LONG = "long";
-
-    bool isKeyword(const std::string& word) noexcept;
-
-}}}
+template<>
+void Algorithms::parse<Algorithms::DownwardAnalysis>(std::string_view data)
+{
+    
+}

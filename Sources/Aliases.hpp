@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,4 +14,10 @@
  * limitations under the License.
  */
 
-#include "ast.hpp"
+#pragma once
+
+#include <boost/filesystem.hpp>
+#include <boost/program_options.hpp>
+
+namespace bfs = boost::filesystem;
+namespace bpo = boost::program_options;

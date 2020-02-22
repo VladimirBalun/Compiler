@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,24 +16,13 @@
 
 #pragma once
 
-#include <string>
+#include "LexicalAnalyzer.hpp"
 
-#include "ast.hpp"
-#include "result.hpp"
-
-namespace Frontend {
-
-    // CRTP interface
-    template<typename Derived>
-    struct IPreprocessor
+namespace Frontend
+{
+    
+    class LexicalAnalyzer::Impl
     {
-        AST process(const std::string_view& source_filename, Result& preprocess_result) noexcept;
     };
-
-    template<typename Derived>
-    AST IPreprocessor<Derived>::process(const std::string_view& source_filename, Result& preprocess_result) noexcept
-    {
-        return static_cast<Derived*>(this)->process(source_filename, preprocess_result);
-    }
-
+    
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,22 @@
  * limitations under the License.
  */
 
-#include "keywords.hpp"
+#pragma once
 
-#include <unordered_set>
+#include <string>
+#include <memory>
 
-static std::unordered_set<std::string> g_available_keywords{
-    Frontend::Lexing::Keywords::SHORT,
-    Frontend::Lexing::Keywords::INT,
-    Frontend::Lexing::Keywords::LONG
-};
-
-bool isKeyword(const std::string& word) noexcept
+namespace Frontend
 {
-    const auto iterator = g_available_keywords.find(word);
-    return iterator != end(g_available_keywords);
+    
+    class LexicalAnalyzer
+    {
+    public:
+        LexicalAnalyzer();
+        ~LexicalAnalyzer();
+    private:
+        class Impl;
+        std::unique_ptr<Impl> m_pimpl;
+    };
+    
 }

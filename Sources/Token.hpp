@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,15 +14,27 @@
  * limitations under the License.
  */
 
-#include "parser.hpp"
+#pragma once
 
-Frontend::AST Frontend::Parsing::Parser::process(const std::vector<std::variant<AVAILABLE_TOKENS>>& tokens, Result& parsing_result) noexcept
+#include <string>
+
+class Token
 {
-    for (const auto& token : tokens)
+public:
+    enum class GrammarLabel
     {
-        switch (token.)
-    }
-
-    parsing_result.setCode(Result::Code::OK);
-    return Frontend::AST{};
-}
+        UNKNOWN = 0,
+        IDENTIFIER,
+        NUMBER
+    };
+public:
+    Token() = default;
+    Token(std::string value, GrammarLabel label);
+    void setValue(std::string value);
+    void setGrammarLabel(GrammarLabel label);
+    std::string_view getValue() const noexcept;
+    GrammarLabel getGrammarLabel() const noexcept;
+private:
+    std::string m_value;
+    GrammarLabel m_grammar_label;
+};

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "AbstractSyntaxTreeImpl.hpp"
 
-#include "ipreprocessor.hpp"
+#pragma region AbstactSyntaxTree::Impl::Node
 
-namespace Frontend {
-
-    class Preprocessor : public IPreprocessor<Preprocessor>
-    {
-    public:
-        AST process(const std::string_view& source_filename, Result& preprocess_result) noexcept;
-    private:
-        std::string readSourceFile(const std::string_view& source_filename) const noexcept;
-    };
-
+constexpr bool AbstactSyntaxTree::Impl::Node::isLeaf() const noexcept
+{
+    return (!m_left) && (!m_right);
 }
+
+#pragma endregion AbstactSyntaxTree::Impl::Node
+
+#pragma region AbstactSyntaxTree::Impl
+
+
+#pragma endregion AbstactSyntaxTree::Impl

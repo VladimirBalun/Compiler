@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,15 +16,4 @@
 
 #pragma once
 
-namespace Frontend { namespace Lexing { namespace Lexems {
-
-    const char ADD = '+';
-    const char SUB = '-';
-    const char MUL = '*';
-    const char DIV = '/';
-
-    const char OPEN_PATENTHESIS = '(';
-    const char CLOSE_PATENTHESIS = ')';
-    const char SEMICOLON = ';';
-
-}}}
+#include "ParsingAlgorithms.hpp"

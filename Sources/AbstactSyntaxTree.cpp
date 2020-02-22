@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,12 +14,14 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "AbstactSyntaxTree.hpp"
+#include "AbstractSyntaxTreeImpl.hpp"
 
-#include <string>
+AbstactSyntaxTree::AbstactSyntaxTree()
+    : m_pimpl(std::make_unique<AbstactSyntaxTree::Impl>())
+{
+}
 
-namespace Configuration {
-
-    inline const std::string VERSION = "0.0.1";
-
+AbstactSyntaxTree::~AbstactSyntaxTree()
+{
 }

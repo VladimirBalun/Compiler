@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,13 +16,15 @@
 
 #pragma once
 
-#include <functional>
+#include <string>
+#include <memory>
 
-namespace Frontend {
-
-    class AST
-    {
-
-    };
-
-}
+class AbstactSyntaxTree
+{
+public:
+    AbstactSyntaxTree();
+    ~AbstactSyntaxTree();
+private:
+    class Impl;
+    std::unique_ptr<Impl> m_pimpl;
+};

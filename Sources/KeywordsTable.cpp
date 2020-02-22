@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -14,20 +14,17 @@
  * limitations under the License.
  */
 
-#pragma once
+#include "KeywordsTable.hpp"
 
-#include <variant>
+const std::unordered_set<std::string_view> KeywordsTable::m_keywords_table = {
+    "byte",
+    "int",
+    "short",
+    "long"
+};
 
-#include "../ast.hpp"
-#include "../result.hpp"
-#include "../lexing/token.hpp"
-
-namespace Frontend { namespace Parsing {
-
-    class Parser
-    {
-    public:
-        AST process(const std::vector<std::variant<AVAILABLE_TOKENS>>& tokens, Result& parsing_result) noexcept;
-    };
-
-}}
+bool KeywordsTable::isKeyword(std::string_view identifier)
+{
+    const auto iterator = m_keywords_table.find(identifier);
+    return iterator != end(m_keywords_table);
+}

@@ -1,5 +1,5 @@
 /*
- * Copyright 2018 Vladimir Balun
+ * Copyright 2020 Vladimir Balun
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,19 +16,14 @@
 
 #pragma once
 
-#include <type_traits>
+#include <string>
+#include <vector>
+#include <unordered_set>
 
-namespace Tools {
-
-    template<typename T, typename... Rest>
-    struct is_any : std::false_type {};
-
-    template<typename T, typename First>
-    struct is_any<T, First> : std::is_same<T, First> {};
-
-    template<typename T, typename First, typename... Rest>
-    struct is_any<T, First, Rest...>
-            : std::integral_constant<bool, std::is_same<T, First>::value || is_any<T, Rest...>::value>
-    {};
-
-}
+class KeywordsTable
+{
+public:
+    static bool isKeyword(std::string_view identifier);
+private:
+    static const std::unordered_set<std::string_view> m_keywords_table;
+};
