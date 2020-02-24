@@ -21,20 +21,41 @@
 class Token
 {
 public:
-    enum class GrammarLabel
+    enum class Tag
     {
         UNKNOWN = 0,
-        IDENTIFIER,
-        NUMBER
+        NUMBER,
+        WORD
     };
 public:
     Token() = default;
-    Token(std::string value, GrammarLabel label);
-    void setValue(std::string value);
-    void setGrammarLabel(GrammarLabel label);
-    std::string_view getValue() const noexcept;
-    GrammarLabel getGrammarLabel() const noexcept;
+    explicit Token(Tag tag);
+    bool isUnknown() const noexcept;
+    bool isNumber() const noexcept;
+    bool isWord() const noexcept;
+    virtual ~Token() = default;
 private:
-    std::string m_value;
-    GrammarLabel m_grammar_label;
+    Tag m_tag = Tag::UNKNOWN;
+};
+
+class NumberToken : public Token
+{
+public:
+    NumberToken() noexcept = default;
+    NumberToken(Tag tag, int value) noexcept;
+    void setValue(int value) noexcept;
+    int getValue() const noexcept;
+private:
+    int m_value = 0;
+};
+
+class WordToken : public Token
+{
+public:
+    WordToken() = default;
+    WordToken(Tag tag, std::string value);
+    void setValue(std::string value);
+    std::string_view getValue() const noexcept;
+private:
+    std::string m_value{};
 };

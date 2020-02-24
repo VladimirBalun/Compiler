@@ -16,27 +16,64 @@
 
 #include "Token.hpp"
 
-Token::Token(std::string value, GrammarLabel label)
-    : m_value(std::move(value)), m_grammar_label(label)
+#pragma region Token
+
+Token::Token(Tag tag)
+    : m_tag(tag)
 {
 }
 
-void Token::setValue(std::string value)
+bool Token::isUnknown() const noexcept
 {
-    m_value = std::move(value);
+    return m_tag == Tag::UNKNOWN;
 }
 
-void Token::setGrammarLabel(GrammarLabel label)
+bool Token::isNumber() const noexcept
 {
-    m_grammar_label = label;
+    return m_tag == Tag::NUMBER;
 }
 
-std::string_view Token::getValue() const noexcept
+bool Token::isWord() const noexcept
+{
+    return m_tag == Tag::WORD;
+}
+
+#pragma endregion Token
+
+#pragma region NumberToken
+
+NumberToken::NumberToken(Tag tag, int value) noexcept
+    : Token(tag), m_value(value)
+{
+}
+
+void NumberToken::setValue(int value) noexcept
+{
+    m_value = value;
+}
+
+int NumberToken::getValue() const noexcept
 {
     return m_value;
 }
 
-Token::GrammarLabel Token::getGrammarLabel() const noexcept
+#pragma endregion NumberToken
+
+#pragma region WordToken
+
+WordToken::WordToken(Tag tag, std::string value)
+    : Token(tag), m_value(std::move(value))
 {
-    return m_grammar_label;
 }
+
+void WordToken::setValue(std::string value)
+{
+    m_value = std::move(value);
+}
+
+std::string_view WordToken::getValue() const noexcept
+{
+    return m_value;
+}
+
+#pragma endregion WordToken
