@@ -21,39 +21,43 @@
 class Token
 {
 public:
+    using SPtr = std::shared_ptr<Token>;
+    using UPtr = std::unique_ptr<Token>;
+    using WPtr = std::weak_ptr<Token>;
+public:
     enum class Tag
     {
         UNKNOWN = 0,
-        NUMBER,
+        DIGIT,
         WORD
     };
 public:
     Token() = default;
     explicit Token(Tag tag);
     bool isUnknown() const noexcept;
-    bool isNumber() const noexcept;
+    bool isDigit() const noexcept;
     bool isWord() const noexcept;
     virtual ~Token() = default;
 private:
     Tag m_tag = Tag::UNKNOWN;
 };
 
-class NumberToken : public Token
+class DigitToken : public Token
 {
 public:
-    NumberToken() noexcept = default;
-    NumberToken(Tag tag, int value) noexcept;
-    void setValue(int value) noexcept;
-    int getValue() const noexcept;
+    DigitToken() noexcept = default;
+    DigitToken(ssize_t value) noexcept;
+    void setValue(ssize_t value) noexcept;
+    ssize_t getValue() const noexcept;
 private:
-    int m_value = 0;
+    ssize_t m_value = 0;
 };
 
 class WordToken : public Token
 {
 public:
     WordToken() = default;
-    WordToken(Tag tag, std::string value);
+    WordToken(std::string value);
     void setValue(std::string value);
     std::string_view getValue() const noexcept;
 private:

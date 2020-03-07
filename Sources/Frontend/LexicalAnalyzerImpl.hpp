@@ -17,12 +17,19 @@
 #pragma once
 
 #include "LexicalAnalyzer.hpp"
+#include "../Token.hpp"
+#include "../Aliases.hpp"
 
 namespace Frontend
 {
     
     class LexicalAnalyzer::Impl
     {
+    public:
+        std::vector<Token::SPtr> scan(std::string_view data);
+    private:
+        WordToken::SPtr scanWord(std::string_view::iterator& iterator, std::string_view::iterator end_data);
+        DigitToken::SPtr scanDigit(std::string_view::iterator& iterator, std::string_view::iterator end_data);
     };
     
 }

@@ -22,6 +22,11 @@ Frontend::LexicalAnalyzer::LexicalAnalyzer()
 {
 }
 
+std::vector<std::shared_ptr<Token>> Frontend::LexicalAnalyzer::scan(std::string_view data)
+{
+    return m_pimpl->scan(data);
+}
+
 Frontend::LexicalAnalyzer::~LexicalAnalyzer()
 {
 }

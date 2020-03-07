@@ -17,7 +17,10 @@
 #pragma once
 
 #include <string>
+#include <vector>
 #include <memory>
+
+class Token;
 
 namespace Frontend
 {
@@ -26,6 +29,7 @@ namespace Frontend
     {
     public:
         LexicalAnalyzer();
+        std::vector<std::shared_ptr<Token>> scan(std::string_view data);
         ~LexicalAnalyzer();
     private:
         class Impl;

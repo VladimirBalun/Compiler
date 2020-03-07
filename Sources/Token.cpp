@@ -28,9 +28,9 @@ bool Token::isUnknown() const noexcept
     return m_tag == Tag::UNKNOWN;
 }
 
-bool Token::isNumber() const noexcept
+bool Token::isDigit() const noexcept
 {
-    return m_tag == Tag::NUMBER;
+    return m_tag == Tag::DIGIT;
 }
 
 bool Token::isWord() const noexcept
@@ -42,17 +42,17 @@ bool Token::isWord() const noexcept
 
 #pragma region NumberToken
 
-NumberToken::NumberToken(Tag tag, int value) noexcept
-    : Token(tag), m_value(value)
+DigitToken::DigitToken(ssize_t value) noexcept
+    : Token(Token::Tag::DIGIT), m_value(value)
 {
 }
 
-void NumberToken::setValue(int value) noexcept
+void DigitToken::setValue(ssize_t value) noexcept
 {
     m_value = value;
 }
 
-int NumberToken::getValue() const noexcept
+ssize_t DigitToken::getValue() const noexcept
 {
     return m_value;
 }
@@ -61,8 +61,8 @@ int NumberToken::getValue() const noexcept
 
 #pragma region WordToken
 
-WordToken::WordToken(Tag tag, std::string value)
-    : Token(tag), m_value(std::move(value))
+WordToken::WordToken(std::string value)
+    : Token(Token::Tag::WORD), m_value(std::move(value))
 {
 }
 
